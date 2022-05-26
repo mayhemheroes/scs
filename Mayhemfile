@@ -1,5 +1,5 @@
 project: rnshah9/scs
-target: scs
+target: run-from-file-direct
 
 cmds:
   - cmd: /repo/out/run_from_file_direct @@
