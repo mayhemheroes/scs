@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ubuntu:18.04
+FROM --platform=linux/amd64 ubuntu:18.04 as builder
 
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential cmake liblas-dev
@@ -7,3 +7,12 @@ ADD . /repo
 WORKDIR /repo
 RUN make -j8
 RUN make test
+
+RUN mkdir -p /deps
+RUN ldd /repo/out/run_from_file_direct | tr -s '[:blank:]' '\n' | grep '^/' | xargs -I % sh -c 'cp % /deps;'
+
+FROM ubuntu:18.04 as package
+
+COPY --from=builder /deps /deps
+COPY --from=builder /repo/out/run_from_file_direct /repo/out/run_from_file_direct
+ENV LD_LIBRARY_PATH=/deps

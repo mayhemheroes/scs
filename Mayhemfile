@@ -1,4 +1,4 @@
-project: rnshah9/scs
+project: scs
 target: run-from-file-direct
 
 cmds:
