@@ -13,5 +13,5 @@ FROM ubuntu:18.04 as package
 RUN apt-get update
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y liblas-dev
 COPY --from=builder /repo/out/* /repo/out/
-COPY --from=builder /fuzz /fuzz
+COPY --from=builder /fuzz /fuzz_scs_norm_sq
 ENV LD_LIBRARY_PATH=/repo/out/
