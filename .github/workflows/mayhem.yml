@@ -51,7 +51,8 @@ jobs:
       fail-fast: false
       matrix:
         mayhemfile:
-          - mayhem/Mayhemfile
+          - mayhem/Mayhemfile_scs_norm_sq
+          - mayhem/Mayhemfile_run_from_file_direct
 
     steps:
       - uses: actions/checkout@v2
