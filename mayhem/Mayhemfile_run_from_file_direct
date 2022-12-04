@@ -2,4 +2,4 @@ project: scs
 target: run-from-file-direct
 
 cmds:
-  - cmd: /run_from_file_direct @@
+  - cmd: /repo/out/run_from_file_direct @@
