@@ -1,0 +1,6 @@
+project: scs
+target: scs-norm-sq
+
+cmds:
+  - cmd: /fuzz_scs_norm_sq
+    libfuzzer: true
