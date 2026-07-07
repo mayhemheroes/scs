@@ -1,0 +1,8 @@
+project: scs
+target: layout-a
+# EXPERIMENT (temporary): no testsuite directive. Tests whether the implicit-default `file://testsuite`
+# resolves RELATIVE TO THIS MAYHEMFILE'S DIRECTORY (mayhem/layouta/testsuite) rather than the package
+# root. Cold target (empty server corpus) => run-1 n_starting_testcases == the local seeds loaded.
+# This dir holds 3 seeds; repo has NO ./testsuite, so a nonzero count can ONLY come from here.
+cmds:
+  - cmd: /mayhem/out/run_from_file_direct @@

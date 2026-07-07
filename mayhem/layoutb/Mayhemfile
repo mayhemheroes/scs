@@ -1,0 +1,6 @@
+project: scs
+target: layout-b
+# EXPERIMENT (temporary): same as layout-a but 5 seeds in mayhem/layoutb/testsuite. Distinct count so we
+# can tell WHICH per-target dir loaded. No testsuite directive; no ./testsuite at repo root.
+cmds:
+  - cmd: /mayhem/out/run_from_file_direct @@

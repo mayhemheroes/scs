@@ -1,0 +1,11 @@
+project: scs
+target: layout-c
+# EXPERIMENT positive control: EXPLICIT Method-B directive pointing at layout-a's 3 seeds. Proves the
+# seed files ARE loadable via an explicit relative file://. Expect run-1 n_starting_testcases == 3.
+# If layout-a/layout-b (implicit) load 0 but this loads 3, implicit-Mayhemfile-relative resolution
+# does NOT happen and the files are fine.
+testsuite:  # mayhem-lint: keep-testsuite
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/layouta/testsuite
+cmds:
+  - cmd: /mayhem/out/run_from_file_direct @@
