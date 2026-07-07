@@ -1,0 +1,15 @@
+project: scs
+target: run-from-file-direct
+# File-input target: it parses an SCS problem file, so random bytes are rejected immediately and a
+# valid seed set is what gives it coverage. This is the "Method B" seed wiring (see docs/seed-corpus.md):
+# an EXPLICIT two-entry testsuite that keeps BOTH sources of Mayhem's default. The first entry is the
+# server-accumulated corpus (so the corpus grows across runs — dropping it is the issue-#124 freeze);
+# the second is the git-tracked starter seeds, loaded on a cold target. The file:// path is RELATIVE
+# (resolved against the CI checkout, package dir = `.`); an absolute file:///mayhem/... aborts run
+# creation (#158). NEVER use file:// alone. The `keep-testsuite` note tells verify-repo this directive
+# is the correct accumulating form, not the anti-pattern it otherwise guards against.
+testsuite:  # mayhem-lint: keep-testsuite
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/testsuite/run-from-file-direct
+cmds:
+  - cmd: /mayhem/out/run_from_file_direct @@
